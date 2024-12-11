@@ -165,7 +165,7 @@ header nav ul {
     transform: translate(-50%, -50%) rotate(var(--rotate));
     text-transform: uppercase;
     color: #fff;
-    font-size: medium;
+    font-size: small;
     font-weight: bolder;
     animation: circleRotate 20s linear infinite;
 }
