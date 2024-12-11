@@ -36,7 +36,6 @@ header nav ul {
     position: relative;
     background-color: #17232A;
     background-image: radial-gradient(#fff3, transparent 50%);
-    margin-top: -50px;
 }
 
 .slider .list {
@@ -90,7 +89,6 @@ header nav ul {
     width: 80px;
     height: 80px;
     content: '';
-    background-image: url(img/leaves.png);
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -167,8 +165,8 @@ header nav ul {
     transform: translate(-50%, -50%) rotate(var(--rotate));
     text-transform: uppercase;
     color: #fff;
-    font-size: small;
-    font-weight: bold;
+    font-size: medium;
+    font-weight: bolder;
     animation: circleRotate 20s linear infinite;
 }
 
@@ -241,14 +239,17 @@ header nav ul {
 
     .slider .content {
         width: 90%; /* Ensure content doesn't overflow on smaller screens */
+        bottom: 10%;
     }
 
     .slider .content div:nth-child(2) {
-        font-size: 3rem; /* Scale down font size */
+        font-size: 1rem; /* Scale down font size */
+        margin: 20px;
     }
 
     .slider .content div:nth-child(1) {
         font-size: 1rem;
+        text-align: center;
     }
 
     #prev,
