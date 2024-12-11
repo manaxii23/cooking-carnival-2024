@@ -2,6 +2,7 @@ body {
     margin: 0;
     font-family: 'Courier New', Courier, monospace;
     font-weight: bold;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
 header {
@@ -9,7 +10,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 5px 2vw; /* Adjusted padding for responsiveness */
+    padding: 5px 10vw; /* Adjust padding based on screen width */
     box-sizing: border-box;
     position: relative;
     z-index: 10;
@@ -20,7 +21,7 @@ header nav ul {
     margin: 0;
     list-style: none;
     display: flex;
-    gap: 4vw; /* Adjusted gap for responsiveness */
+    gap: 2vw; /* Use relative units for spacing */
 }
 
 :root {
@@ -36,9 +37,6 @@ header nav ul {
     background-color: #17232A;
     background-image: radial-gradient(#fff3, transparent 50%);
     margin-top: -50px;
-    display: flex;
-    justify-content: center; /* Center content */
-    align-items: center;
 }
 
 .slider .list {
@@ -118,8 +116,8 @@ header nav ul {
     font-size: 1.15rem;
 }
 
-/* Navigation arrows */
-#prev, #next {
+#prev,
+#next {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -138,14 +136,14 @@ header nav ul {
 }
 
 #prev {
-    left: 20px;
+    left: 10px; /* Adjust spacing for smaller screens */
 }
 
 #next {
-    right: 20px;
+    right: 10px; /* Adjust spacing for smaller screens */
 }
 
-/* Circle mask */
+/* Circle adjustments for responsive behavior */
 .circle {
     pointer-events: none;
     position: absolute;
@@ -174,7 +172,13 @@ header nav ul {
     animation: circleRotate 20s linear infinite;
 }
 
-/* Modal */
+@keyframes circleRotate {
+    to {
+        transform: translate(-50%, -50%) rotate(calc(var(--rotate) + 360deg));
+    }
+}
+
+/* Modal overlay */
 .modal-overlay {
     display: none;
     position: fixed;
@@ -189,22 +193,29 @@ header nav ul {
     align-items: center;
 }
 
+/* Modal box */
 .modal {
-    background: white;
+    background: rgba(255, 255, 255, 0.589);
     padding: 30px;
-    border-radius: 8px;
+    border-radius: 15px;
     text-align: center;
     width: 50%;
+    transform: translateY(-100%);
+    animation: slideIn 0.5s ease-out forwards;
 }
 
 .qr-code img {
-    width: 200px;
-    height: 200px;
+    width: 100%;
+    max-width: 200px; /* Make the QR code responsive */
+    height: auto;
 }
 
+/* Close button */
 .close-btn {
     margin-top: 20px;
     background-color: #17232A;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
     color: white;
     padding: 10px 20px;
     border: none;
@@ -216,54 +227,52 @@ header nav ul {
     background-color: #111;
 }
 
-@keyframes circleRotate {
+@keyframes slideIn {
     to {
-        transform: translate(-50%, -50%) rotate(calc(var(--rotate) + 360deg));
+        transform: translateY(0);
     }
 }
 
+/* Media queries for smaller screens */
 @media (max-width: 768px) {
     header {
-        padding: 5px 3vw;
+        padding: 5px 20px; /* Adjust padding */
+    }
+
+    .slider .content {
+        width: 90%; /* Ensure content doesn't overflow on smaller screens */
     }
 
     .slider .content div:nth-child(2) {
-        font-size: 3rem;
+        font-size: 3rem; /* Scale down font size */
     }
 
-    .slider .content button {
+    .slider .content div:nth-child(1) {
         font-size: 1rem;
-        padding: 8px 16px;
     }
 
-    .slider .list .item img {
+    #prev,
+    #next {
+        width: 40px;
+        height: 40px;
+    }
+
+    .modal {
         width: 80%;
-    }
-
-    .circle span {
-        font-size: 1.5rem;
+        padding: 20px; /* Reduce padding */
     }
 }
 
 @media (max-width: 480px) {
-    header {
-        padding: 5px 4vw;
-    }
-
     .slider .content div:nth-child(2) {
-        font-size: 2rem;
+        font-size: 2.5rem; /* Adjust for very small screens */
     }
 
     .slider .content button {
-        font-size: 0.9rem;
-        padding: 6px 12px;
-    }
-
-    .slider .list .item img {
-        width: 70%;
-    }
-
-    .circle span {
         font-size: 1rem;
+    }
+
+    .qr-code img {
+        max-width: 150px; /* Make QR code smaller */
     }
 }
